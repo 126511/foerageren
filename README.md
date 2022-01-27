@@ -11,13 +11,13 @@ Leden kunnen super makkelijk worden uitgenodigd door middel van een link. Ook ku
     1. [Aanmelden](#aanmelden)
     2. [Groepen](#groepen)
     3. [Afrekenen](#afrekenen)
-    4. [Producten toevoegen (voor managers)](#producten-toevoegen-(voor-managers))
-    5. [Saldo's bewerken en opwaarderen (voor managers)](#saldo's-bewerken-en-opwaarderen-(voor-managers))
-    6. [Vooraad bijhouden (voor managers)](#voorraad-bijhouden-(voor-managers))
-    7. [Gebruikers (voor managers)](#gebruikers-(voor-managers))
+    4. [Producten toevoegen (voor managers)](#producten-toevoegen-voor-managers)
+    5. [Saldo's bewerken en opwaarderen (voor managers)](#saldos-bewerken-en-opwaarderen-voor-managers)
+    6. [Vooraad bijhouden (voor managers)](#voorraad-bijhouden-voor-managers)
+    7. [Gebruikers (voor managers)](#gebruikers-voor-managers)
 3. [Credits](#credits)
 4. [Licentie](#licentie)
-5. [Bugs / toevoegingen](#bugs-/-toevoegingen)
+5. [Bugs / toevoegingen](#bugs--toevoegingen)
 
 ## Gebruikte technologie
 Foerageren is een web=application. De back-end is geprogrammeerd in Python met Django als web-framework. De front-end is gemaakt met Django-templates gecombineerd met Bootstrap v5.1 en custom CSS. Alle gebruikte packages staan in requirements.txt.
