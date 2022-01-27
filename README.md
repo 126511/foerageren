@@ -13,7 +13,7 @@ Leden kunnen super makkelijk worden uitgenodigd door middel van een link. Ook ku
     3. [Afrekenen](#afrekenen)
     4. [Producten toevoegen (voor managers)](#producten-toevoegen-voor-managers)
     5. [Saldo's bewerken en opwaarderen (voor managers)](#saldos-bewerken-en-opwaarderen-voor-managers)
-    6. [Vooraad bijhouden (voor managers)](#voorraad-bijhouden-voor-managers)
+    6. [Voorraad bijhouden (voor managers)](#voorraad-bijhouden-voor-managers)
     7. [Gebruikers (voor managers)](#gebruikers-voor-managers)
 3. [Credits](#credits)
 4. [Licentie](#licentie)
@@ -39,7 +39,7 @@ Klik bovenin op het producten-tabje en voer de details in van je nieuwe product 
 ### Saldo's bewerken en opwaarderen (voor managers)
 Klik bovenin op het opwaarderen-tabje. Zodra iemand jouw betaalverzoek betaald heeft kan je de gebruiker selecteren en het bedrag invoeren. Het saldo van die persoon wordt nu geupdated.
 
-### Vooraad bijhouden (voor managers)
+### Voorraad bijhouden (voor managers)
 Zodra iets verkocht wordt, wordt ook de voorraad van dat product aangepast. Je kan onder het tabje vooraard een vooraad toevoegen / bewerken als je inkopen doet. Zo kan je altijd zien wat de voorraad is, zodat je precies weet wanneer je weer inkopen moet doen. 
 
 ### Gebruikers (voor managers)
