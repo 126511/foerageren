@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block head_title %}Aanmaken{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block fluid %}-fluid{% endblock %}
+{% block content %}
+
+<div class="row">	
+  <div class="col-md-6">
+    <h2>{{title}} aanmaken</h2>
+    <form enctype='multipart/form-data' method="POST" action="." class="form form-item">
+     {% csrf_token %}
+     {{ form|crispy }}
+     <button type="submit" class="btn pull-right btn-success mt-1" name="action"><i class="bi bi-check"></i> Toevoegen </button>
+   </form>
+ </div>
+ <div class="col-md-6">  
+  <h2>Bestaande '{{title}}'</h2>
+  <table class="table table-light table-striped">
+    <thead>
+      <tr>
+        <th>#</th>      
+        {% if model == 'Product' %}
+        <th>Naam</th>
+        <th>Prijs</th>
+        {% elif model == 'Stock' %}
+        <th>Product</th>
+        <th>Hoeveelheid</th>
+        {% elif model == 'Prepaid' %}
+        <th>Wie</th>
+        <th>Hoeveel</th>  
+        <th>Wanneer</th> 
+        {% endif %}
+        <th><i class="bi bi-trash"></i></th>  
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for object in objects %}
+      {% if model == 'Product' %}
+      <tr>
+        <td>{{object.pk}}</td>
+        <td><a href="/edit/{{model}}/{{object.id}}/" class="btn btn-info"><i class="bi bi-wrench"></i>
+        </span> {{object}}</a></td>
+        <td>{{object.price}}</td>
+        <td><a href="/delete/{{model}}/{{object.id}}/" onclick="return confirm('Weet je zeker dat je {{object}} wilt verwijderen?')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+      </tr>
+      {% elif model == 'Stock' %}
+      <tr>
+        <td>{{object.pk}}</td>
+        <td><a href="/edit/{{model}}/{{object.id}}/" class="btn btn-info"><i class="bi bi-wrench"></i>
+          {{object.product}}</a></td>
+        <td>{{object.amount}}</td>
+        <td><a href="/delete/{{model}}/{{object.id}}/" onclick="return confirm('Weet je zeker dat je {{object}} wilt verwijderen?')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+      </tr>
+      {% elif model == 'Prepaid' %}
+      <tr>
+        <td>{{object.pk}}</td>
+        <td><a href="/edit/{{model}}/{{object.id}}/" class="btn btn-info"><i class="bi bi-wrench"></i>
+          {{object.buyer}}</a></td>
+        <td>€ {{object.amount|floatformat:2}}</td>
+        <td>{{object.added_at}}</td>
+        <td><a href="/delete/{{model}}/{{object.id}}/" onclick="return confirm('Weet je zeker dat je {{object}} wilt verwijderen?')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></span></a></td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+{% endblock %}
+

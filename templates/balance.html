@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head_title %}Saldo{% endblock %}
+{% block content %}
+<div class="row" ng-controller="InitialController">
+	<div class="col-md-12">
+		<h3>Je prepaid tegoed € {{ profile.balance|floatformat:2 }}</h3>
+		<table class="table table-light table-striped">
+			<tbody>
+				<tr>
+					<th>Bedrag</th>
+					<th>Wanneer</th>
+				</tr>
+				{% for prepaid in prepaids %}
+				<tr>
+					<td>€ {{prepaid.amount|floatformat:2}}</td>
+					<td>{{prepaid.added_at}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

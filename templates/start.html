@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block head_title %}kan je leren{% endblock %}
+{% block content %}
+<div class="row" ng-controller="InitialController"><div class="col-lg-12">
+	{% for badge in user_badges %}
+	<div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> 
+		<div class="row">
+			<div class="col-md-3">
+				<img src="{{badge.badge.image.url}}" class="img-responsive">
+			</div>
+			<div class="col-md-9">
+				<strong>{{badge.badge.name}}</strong> {{badge.badge.message}}</div>
+			</div>
+		</div>
+	{% endfor %}
+	<form enctype='multipart/form-data' method="POST" action="/" class="form form-item">
+		{% csrf_token %}
+		<div class="container"><div class="row">
+
+		<div class="col-lg-4">
+			<h5>Wat</h5>
+			<div class="products row">
+				{% if products %}
+				{% for product in products %}
+				<div class="col-md-6">
+					<div class="selectable">
+						<label class="{% if forloop.counter == 1 %}selected{% endif %}">
+							<input type="radio" name="product" value="{{product.id}}" {% if forloop.counter == 1 %}checked="checked"{% endif %}>
+							{{product.name}} <small>€{{product.price|floatformat:2}}</small>
+						</label>
+					</div>
+				</div>
+				{% endfor %}
+				{% else %}
+				Vraag de manager van je groep om producten toe te voegen!
+				{% endif %}
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<h5>Wie</h5>
+			<div class="users row">
+				{% if users %}
+				{% for buyer in users %}
+				{% if buyer.image %}
+				{% endif %}
+				<div class="col-md-6">
+					<div class="checkable">
+						<label for="buyer-{{buyer.user.id}}" class=" {% if buyer.user.id == user.id %}selected{% endif %}">
+							<input id="buyer-{{buyer.user.id}}" type="checkbox" name="buyer-{{buyer.user.id}}" value="{{buyer.user.id}}" {% if buyer.user.id == user.id %}checked="checked"{% endif %}>
+							{{buyer}}
+							
+						</label>
+					</div>
+				</div>
+
+				{% endfor %}
+				{% else %}
+				Er zijn nog geen gebruikers!
+				{% endif %}		
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<h5>Betalen</h5>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-text">aantal</div>
+							<input type="number" class="form-control" name="amount"  value="1"  placeholder="Amount">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<button type="submit" class="btn btn-info btn-block" name="action"> Afrekenen </button>
+				</div>
+			</div>
+		</div></div>
+
+		</div>
+	</form>
+</div></div>
+{% endblock %}

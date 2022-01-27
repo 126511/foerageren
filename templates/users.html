@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block head_title %}Gebruikers{% endblock %}
+{% block content %}
+<div class="row" ng-controller="InitialController">
+	<div class="col-md-12">
+		<h3>Gebruikers</h3>
+		<table class="table table-light table-striped">
+			<tbody>
+				<tr>
+					<th>Gebruiker</th>
+					<th>Saldo</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+				{% for user in users %}
+				<tr class="{% if user.1.balance < 0 %}table-danger{% endif %}">
+					<td>{{ user.0 }}</td>
+					<td>€ {{ user.1.balance|floatformat:2 }}</td>
+					<td>{{ user.2 }}</td>
+					<td>
+						<div class="dropdown">
+							<a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Meer
+							</a>
+						  
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								{% if user.2 == "Verbannen" %}
+								<a href="/unban_user/{{ user.0.user.id }}" onclick="return confirm('Weet je zeker dat je {{user.0}} niet meer wilt verbannen?')" class="btn btn-success btn-sm"><i class="bi bi-check"></i>Gebruiker niet meer verbannen</a>
+								{% else %}
+								<a href="/ban_user/{{ user.0.user.id }}" onclick="return confirm('Weet je zeker dat je {{user.0}} wilt verbannen?')" class="btn btn-danger btn-sm"><i class="bi bi-x-circle"></i>Gebruiker verbannen</a>
+								{% endif %}
+								<a href="/remove_user/{{ user.0.user.id }}" onclick="return confirm('Weet je zeker dat je {{user.0}} wilt verwijderen? Deze actie is onomkeerbaar!')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i>Gebruiker verwijderen</a>
+								{% if user.2 != "Manager" and user.2 != "Admin" %}
+								<a href="/make_manager/{{ user.0.user.id }}" onclick="return confirm('Weet je zeker dat je {{user.0 manager wilt maken voor {{ request.user.current_group }?')" class="btn btn-primary btn-sm"><i class="bi bi-arrow-up-circle"></i>Gebruiker manager maken</a>
+								{% endif %}
+							</div>
+						</div>
+						
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a class="btn btn-info" href="/invite/">Bekijk uitnodigingen</a>
+	</div>
+</div>
+{% endblock %}

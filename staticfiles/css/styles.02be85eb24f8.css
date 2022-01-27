@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,500,500italic);
+body{
+	padding-top: 60px;
+    height: 100%;
+	color:#f5f5f5;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+    background:#333 url("../bg.e2ef44a2849a.png") no-repeat bottom right;
+    min-height: 100%;
+    background-attachment: fixed;
+    width:100%;
+    float:left;
+}
+.form-control {
+    color: #fff;
+    background-color: #777;
+    border: 1px solid #333;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.datetimepicker {
+	color: #333;
+}
+.input-group-addon {
+    color: #fff;
+    background-color: #555;
+    border-color:#333;
+}
+
+form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #444;
+    opacity: 1;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 100;
+}
+
+h1,h2,h3,h4,h5{
+	font-weight: 100;
+}
+
+.selectable label, .checkable label{
+	background: #444;
+	margin-bottom: 10px;
+	padding:10px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    display: block;
+    width: 100%;
+    border:2px solid #333;
+}
+
+label.selected{
+    border:2px solid #DE5B6F;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #DE5B6F;
+    border-color: #DE5B6F;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #BB364A;
+    border-color: #DE5B6F;
+}
+
+.btn-info.active.focus, .btn-info.active:focus, .btn-info.active:hover, .btn-info:active.focus, .btn-info:active:focus, .btn-info:active:hover, .open>.dropdown-toggle.btn-info.focus, .open>.dropdown-toggle.btn-info:focus, .open>.dropdown-toggle.btn-info:hover {
+    color: #fff;
+    background-color: #981F31;
+    border-color: #981F31;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #222222;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #615353;
+}
+
+.groupmenu {
+    color: #9d9d9d !important;
+    font-size: 16px !important;
+    padding: 0px !important;
+}
+
+.current {
+    font-weight: bold !important;
+}
+
+.current:hover {
+    background-color: transparent !important;
+}

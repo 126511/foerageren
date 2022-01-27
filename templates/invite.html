@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block head_title %}Uitnodigingen{% endblock %}
+{% block content %}
+<div class="row" ng-controller="InitialController">
+	<div class="col-md-12">
+		<h3>Uitnodigingen</h3>
+        <table class="table table-light table-striped">
+			<tbody>
+				<tr>
+					<th>Aangemaakt door</th>
+					<th>Wanneer</th>
+					<th>Link</th>
+					<th></th>
+				</tr>
+				{% for invite in invites %}
+				<tr class="{% if new_invite == invite %}table-success{% endif %}">
+					<td>{{ invite.requested_by }}</td>
+					<td>{{ invite.datetime }}</td>
+					<td>{{ request.get_host }}/use_invite/{{ invite.key }}</td>
+					<td>
+						<a href="/delete/Invite/{{ invite.id }}">Verwijder uitnodiging</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+        <a class="btn btn-info" href='/new_invite'>Maak een nieuwe uitnodiging aan</a>
+	</div>
+</div>
+{% endblock %}

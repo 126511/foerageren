@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block head_title %}Nieuwe groep{% endblock %}
+{% block content %}
+<div class="row" ng-controller="InitialController">
+	<div class="col-lg-12">
+		<h3>Sluit je aan bij een bestaande groep</h3>
+        <ul>
+		{% if groups %}
+            {% for group in groups %}
+                <li><a href="/join_group/{{ group.id }}">{{ group.name }}</a></li>
+            {% endfor %}
+ 
+        {% else %}
+            <li>Er zijn geen groepen waarbij je je kan aansluiten zonder uitgenodigd te zijn.</li>
+        {% endif %}
+        </ul>
+        <h3>Maak een nieuwe groep aan</h3>
+		<form enctype='multipart/form-data' method="POST" action="." class="form form-item">
+			{% csrf_token %}
+			{{ form|crispy }}
+			<button type="submit" class="btn pull-right btn-success" name="action"><i class="bi bi-check"></i> Opslaan </button>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head_title %}Voorraad{% endblock %}
+{% block content %}
+<div class="row" ng-controller="InitialController">
+	<div class="col-md-12">
+		<h3>Voorraad</h3>
+		<table class="table table-light table-striped">
+			<tbody>
+				<tr>
+					<th>Product</th>
+					<th>Voorraad</th>
+				</tr>
+				{% for product in products %}
+				<tr>
+					<td>{{product.name}}</td>
+					<td>{{product.stock}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a class="btn btn-info" href="/stocks">Voeg voorraad toe</a>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block head_title %}Profiel{% endblock %}
+{% block css %}
+{% load wysiwyg %}
+{% wysiwyg_setup %}
+{% endblock %}
+{% block fluid %}-fluid{% endblock %}
+{% block content %}
+
+<div class="row">	
+  {% if model == 'Process' %}
+  <div class="col-md-7">
+  <h3>Activiteiten</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Activiteit</th>
+          <th>Datum</th>
+          <th>Status</th>
+          <th>Actor</th>
+          <th>Uitvoeren na</th>
+          <th><i class="bi bi-trash"></i></th>  
+        </tr>
+      </thead>
+      <tbody>
+        {% for activity in instance.activities.all %}
+        <tr>
+          <td>{{activity.order}}</td>
+          <td><a href="/edit/Activity/{{activity.id}}/" class="btn btn-default"><i class="bi bi-wrench"></i> {{activity}}</a> </td>
+          <td>{% if activity.execute_at %}{{activity.execute_at}}{% endif %}</td>
+          <td>{{activity.get_status_display}}</td>
+          <td>{{activity.get_actor_display}}</td>
+          <td>{{activity.execute_after}}</td>
+          <td><a href="/delete/Activity/{{Activity.id}}/" onclick="return confirm('Weet je zeker dat je deze activiteit wilt verwijderen?')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">  
+    <h3>E-mails</h3>
+        <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Datum</th>
+          <th>Status</th>
+          <th>Geopend</th>
+          <th>Ontvanger</th>
+          <th><i class="bi bi-trash"></i></th>  
+        </tr>
+      </thead>
+      <tbody>
+        {% for email in instance.emails.all %}
+        <tr>
+          <td>{{email.subject}}</td>
+          <td>{% if email.execute_at %}{{email.execute_at}}{% endif %}</td>
+          <td>{{email.get_status_display}}</td>
+          <td>{{email.opened}}</td>
+          <td>{% if email.feedback %}{{email.feedback.user}}{% else %}{{email.activity.user}}{% endif %}</td>
+          <td><a href="/delete/Activity/{{Activity.id}}/" onclick="return confirm('Weet je zeker dat je deze activiteit wilt verwijderen?')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}
+

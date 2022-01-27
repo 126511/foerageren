@@ -1,0 +1,27 @@
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Sign In" %}</h1>
+
+Welkom op foerageren.nl! Dé website om de consumptie van jouw scoutinggroep bij te houden. Het werkt als volgt, jouw scoutinggroep benoemt iemand tot Manager, deze schiet de inkopen voor. Vervolgens kunnen alle leden via hun persoonlijke account op de website aanvinken dat ze iets gepakt hebben uit de bar of de kast. De leden hebben een prepaid saldo, dat ze betalen via een Tikkie aan de Manager.<br>
+Groepsleden uitnodigen is super makkelijk: met 1 druk op de knop maak je een link aan die je met de groepsleden kan delen. 
+
+{% get_providers as socialaccount_providers %}
+
+<form class="login mt-3" method="POST" action="{% url 'account_login' %}?next=/">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-info" type="submit">Inloggen</button> <a class="button secondaryAction" href="{% url 'account_reset_password' %}"> <a class="btn btn-light" href="/accounts/signup/">Registreren</a> <!--{% trans "Forgot Password?" %}</a>-->
+  
+</form>
+
+{% endblock %}

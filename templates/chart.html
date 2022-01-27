@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head_title %}Overzicht{% endblock %}
+{% block content %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+<div class="row" ng-controller="InitialController">
+	<div class="col-md-12">
+		<h3>Grafiek</h3>
+		{% if user.id == 1 %}
+		<div id="line"></div>
+		{% endif %}
+		<table class="table table-striped">
+			<tbody>
+				{% for sale in sales %}
+				<tr>
+					<td>{{sale.buyer}}</td>
+					<td>{{sale.product}}</td>
+					<td>{{sale.amount|floatformat:0}}x</td>
+					<td>€ {{sale.price|floatformat:2}}</td>
+					<td>{{sale.added_at}}</td>
+					<td><a href="/ssskl/delete/Sale/{{sale.id}}/" onclick="return confirm('Weet je zeker dat je de aankoop ongedaan wilt maken?')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+{% endblock %}
+{% block extra_js %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script type="text/javascript">
+Morris.Line({
+  element: 'line',
+  data: [
+    {% for sale in sales %}{% if sale.product.id == 1 %}
+    { y: '{{sale.added_at|date:"Y-m-d H:i:s" }}', {{sale.buyer.id}}: {{sale.product_sum.amount__sum|floatformat:'0'}} },{% endif %}{% endfor %}
+  ],
+  xkey: 'y',
+  ykeys: [{% for user in users %}'{{user.user.id}}',{% endfor %}],
+  labels: [{% for user in users %}'{{user.first_name}}',{% endfor %}]
+});
+</script>
+{% endblock %}
