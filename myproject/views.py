@@ -412,7 +412,7 @@ def profile(request, *args, **kwargs):
             obj.save()
             if not obj.completed:
                 obj.completed = True
-                messages.add_message(request, messages.SUCCESS, 'Welkom bij SSSKL :)') 
+                messages.add_message(request, messages.SUCCESS, 'Welkom bij Foerageren :)') 
                 obj.save()
                 if kwargs.get('next'):
                     return HttpResponseRedirect(f"/{kwargs['next']}")
